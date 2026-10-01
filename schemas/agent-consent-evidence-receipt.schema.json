@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ankitforce/agent-consent-evidence-receipt-field-guide/schemas/agent-consent-evidence-receipt.schema.json",
+  "title": "Agent Consent Evidence Receipt",
+  "type": "object",
+  "required": ["receipt_id", "created_at", "request", "authority", "actor", "environment", "evidence", "actions", "verification", "residual_risk"],
+  "properties": {
+    "receipt_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "request": {
+      "type": "object",
+      "required": ["summary", "initiator"],
+      "properties": {
+        "summary": { "type": "string" },
+        "initiator": { "type": "string" },
+        "success_criteria": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "required": ["approval_status", "approved_by", "scope"],
+      "properties": {
+        "approval_status": { "enum": ["approved", "denied", "partial", "not_required", "missing"] },
+        "approved_by": { "type": ["string", "null"] },
+        "scope": { "type": "array", "items": { "type": "string" } },
+        "constraints": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "actor": {
+      "type": "object",
+      "required": ["agent_name", "model", "delegates"],
+      "properties": {
+        "agent_name": { "type": "string" },
+        "model": { "type": "string" },
+        "delegates": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "properties": {
+        "tools": { "type": "array", "items": { "type": "string" } },
+        "systems_touched": { "type": "array", "items": { "type": "string" } },
+        "boundaries": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "source", "evidence_type"],
+        "properties": {
+          "claim": { "type": "string" },
+          "source": { "type": "string" },
+          "evidence_type": { "enum": ["official", "reputable_media", "community_reaction", "developer_signal", "internal_record", "watch_only"] },
+          "confidence": { "enum": ["high", "medium", "low"] }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["action", "target", "result"],
+        "properties": {
+          "action": { "type": "string" },
+          "target": { "type": "string" },
+          "result": { "type": "string" }
+        }
+      }
+    },
+    "verification": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "status"],
+        "properties": {
+          "check": { "type": "string" },
+          "status": { "enum": ["passed", "failed", "blocked", "not_run"] },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "residual_risk": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

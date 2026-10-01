@@ -1,0 +1,79 @@
+{
+  "receipt_id": "receipt-2026-10-01-example",
+  "created_at": "2026-10-01T14:00:00Z",
+  "request": {
+    "summary": "Draft a source-backed AI news brief and prepare a companion field guide.",
+    "initiator": "user",
+    "success_criteria": [
+      "Use official sources for material claims",
+      "Label community radar as discovery only",
+      "Create reusable companion artifacts"
+    ]
+  },
+  "authority": {
+    "approval_status": "approved",
+    "approved_by": "standing automation approval",
+    "scope": [
+      "Create local package",
+      "Publish Substack article for the recurring brief",
+      "Create public GitHub companion when warranted"
+    ],
+    "constraints": [
+      "Do not post LinkedIn or social updates",
+      "Do not scan X/Twitter",
+      "Do not duplicate an existing Substack post or email"
+    ]
+  },
+  "actor": {
+    "agent_name": "AI News Morning Brief automation",
+    "model": "coding agent",
+    "delegates": []
+  },
+  "environment": {
+    "tools": ["web research", "local filesystem", "Substack wrapper", "GitHub CLI"],
+    "systems_touched": ["Substack", "GitHub", "local workspace"],
+    "boundaries": ["public/free sources only", "no private cookie inspection", "no social publishing"]
+  },
+  "evidence": [
+    {
+      "claim": "AWS AgentCore Identity added a Consent Portal.",
+      "source": "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/release-notes.html",
+      "evidence_type": "official",
+      "confidence": "high"
+    },
+    {
+      "claim": "Cohere released Embed 5 for enterprise retrieval.",
+      "source": "https://docs.cohere.com/changelog/embed-v5",
+      "evidence_type": "official",
+      "confidence": "high"
+    }
+  ],
+  "actions": [
+    {
+      "action": "create",
+      "target": "article draft",
+      "result": "created local Markdown package"
+    },
+    {
+      "action": "create",
+      "target": "field-guide repository",
+      "result": "created schema, example, checklist, and manifest"
+    }
+  ],
+  "verification": [
+    {
+      "check": "material claims have official sources",
+      "status": "passed",
+      "notes": "Community radar was degraded and not used as proof."
+    },
+    {
+      "check": "public Substack page verified",
+      "status": "not_run",
+      "notes": "Run this after publication."
+    }
+  ],
+  "residual_risk": [
+    "Receipt schema is a starter artifact, not a compliance standard.",
+    "Human review is still required for high-impact actions."
+  ]
+}
